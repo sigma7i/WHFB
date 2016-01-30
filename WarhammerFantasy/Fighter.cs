@@ -7,7 +7,8 @@ namespace WarhammerFantasy
         private static readonly Random Rand = new Random();
 
         public string Name;
-        public int M;
+        public int MovePoints { get; set; } // имена надо давать более осмысленные, доделай для других
+                                            // такие важные данные нужно делать свойствами, посмотри IUnit я теперь могу добавить в интерфейс
         public int WS;
         public int BS;
         public int S;
@@ -20,10 +21,10 @@ namespace WarhammerFantasy
         public int Ward;
         public string Param;
 
-        public Fighter(string name, int m, int ws, int bs, int s, int t, int w, int i, int a, int ld, int aS, int ward, string param)
+        public Fighter(string name, int m, int ws, int bs, int s, int t, int w, int i, int a, int ld, int aS, int ward, string param) // потом это пределаем в более красивое, я тебе покажу:)
         {
             Name = name;
-            M = m;
+            MovePoints = m;
             WS = ws;
             BS = bs;
             S = s;
@@ -37,6 +38,9 @@ namespace WarhammerFantasy
             Param = param;
         }
 
+        /// <summary>
+        ///  Атака персонажа  <- это хмл документация, так нам будет легче определять что делает функция, добавь для других
+        /// </summary>
         public int Attack(Fighter enamy)
         {
             int r = 0;
