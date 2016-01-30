@@ -56,14 +56,14 @@ namespace WarhammerFantasy
                             {
                                 Print(" --> особая защита ", 0);
                             }
-                            if (enamy.not_ward(this) != 0)
+                            if (enamy.not_ward() != 0)
                             {
                                 Print(" --> " + enamy.Name + " РАНЕН", 2);
                                 r = 1;
-                            };
-                        };
-                    };
-                };
+                            }
+                        }
+                    }
+                }
                 if (r == 0)
                 {
                     Print(" --> не получилось", 1);
@@ -86,11 +86,11 @@ namespace WarhammerFantasy
                 if (WS == enamy.WS)
                 {
                     if (check_k("ws", Param, 4, 1) != 0) { r = 1; }
-                };
+                }
                 if (WS > enamy.WS)
                 {
                     if (check_k("ws", Param, 3, 1) != 0) { r = 1; }
-                };
+                }
                 if (WS < enamy.WS)
                 {
                     if ((WS * 2) < enamy.WS)
@@ -159,7 +159,7 @@ namespace WarhammerFantasy
             return r;
         }
 
-        private int not_ward(Fighter heAttack)
+        private int not_ward()
         {
             int r = 1;
 

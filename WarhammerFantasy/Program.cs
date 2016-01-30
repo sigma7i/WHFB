@@ -95,7 +95,7 @@ namespace WarhammerFantasy
                             B.W--;
                         }
                     }
-                };
+                }
                 if ((A.W > 0) && (B.W > 0))
                 {
                     if (roundWoundA > roundWoundB)
@@ -105,9 +105,9 @@ namespace WarhammerFantasy
                     if (roundWoundB > roundWoundA)
                     {
                         B.W = B.test_r(roundWoundB);
-                    };
-                };
-            };
+                    }
+                }
+            }
             Print("\n\nКонец:", 3);
             if (B.W < 1)
             {
@@ -118,7 +118,7 @@ namespace WarhammerFantasy
                 Print(" " + B.Name + " победил\n\n", 0);
             }
             Print("\n\n нажмите Enter...", 0);
-            string pressEnter = Console.ReadLine();
+            Console.ReadLine();
         }
 
         static void Print(string line, byte color)
@@ -128,26 +128,26 @@ namespace WarhammerFantasy
             if (color == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Gray;
-            };
+            }
             if (color == 1)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-            };
+            }
             if (color == 2)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-            };
+            }
             if (color == 3)
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
                 Console.ForegroundColor = ConsoleColor.Gray;
-            };
+            }
             Console.Write(line);
         }
 
         static int Check_i(int round)
         {
-            int r = 1;
+            int r;
 
             if ((round == 1) && (!(B.Param.Contains("F"))) && (!(B.Param.Contains("F"))))
             {
@@ -184,7 +184,7 @@ namespace WarhammerFantasy
                 {
                     r = 0;
                     Print(" --> " + B.Name + "\n", 0);
-                };
+                }
             }
             return r;
         }
@@ -210,7 +210,7 @@ namespace WarhammerFantasy
             Print(")", 0);
             if ((r >= c) && (checkType != "LD")) { check = 1; }
             if ((r > c) && (checkType == "LD")) { check = 1; }
-            if (r == 1) { check = 0; };
+            if (r == 1) { check = 0; }
             return check;
         }
 

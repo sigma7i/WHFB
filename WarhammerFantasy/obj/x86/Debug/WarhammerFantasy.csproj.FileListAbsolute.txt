@@ -1,9 +1,0 @@
-d:\files\maxim\documents\visual studio 2010\Projects\MyDev\WarhammerFantasy\WarhammerFantasy\bin\Debug\WarhammerFantasy.exe
-d:\files\maxim\documents\visual studio 2010\Projects\MyDev\WarhammerFantasy\WarhammerFantasy\bin\Debug\WarhammerFantasy.pdb
-d:\files\maxim\documents\visual studio 2010\Projects\MyDev\WarhammerFantasy\WarhammerFantasy\obj\x86\Debug\WarhammerFantasy.exe
-d:\files\maxim\documents\visual studio 2010\Projects\MyDev\WarhammerFantasy\WarhammerFantasy\obj\x86\Debug\WarhammerFantasy.pdb
-C:\WHFB\WarhammerFantasy\obj\x86\Debug\WarhammerFantasy.exe
-C:\WHFB\WarhammerFantasy\obj\x86\Debug\WarhammerFantasy.pdb
-C:\WHFB\WarhammerFantasy\bin\Debug\WarhammerFantasy.exe
-C:\WHFB\WarhammerFantasy\bin\Debug\WarhammerFantasy.pdb
-C:\WHFB\WarhammerFantasy\obj\x86\Debug\WarhammerFantasy.csprojResolveAssemblyReference.cache
