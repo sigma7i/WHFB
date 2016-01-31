@@ -17,8 +17,8 @@ namespace WarhammerFantasy.Units
             AttackPoints = 4; // A
             Leadership = 6; // LD
             Armour = 4; // AS
-            //Ward = 0; // Ward
-            //Param = ""; // Param
+            //Ward = 0; // Ward   //  в базовом классе и так 0
+            //Param = ""; // Param //  в базовом классе
 
             Action = new SimpleAction(this);
         }

@@ -18,7 +18,7 @@ namespace WarhammerFantasy.Units
             Leadership = 8;
             Armour = 5;
             Ward = 6;
-            //Param = "";
+            //Param = ""; //  в базовом классе уже есть
 
             Action = new SimpleAction(this);
         }
