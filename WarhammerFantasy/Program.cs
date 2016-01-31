@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using WarhammerFantasy.Units;
 
 namespace WarhammerFantasy
 {
@@ -6,114 +8,90 @@ namespace WarhammerFantasy
     {
         static readonly Random Rand = new Random();
 
-        static Fighter A = new Fighter(
-            "Прекрасный эльф",
-            4,  // M / Передвижение
-            4,  // WS / Владение оружием
-            5,  // BS / Навыки стрельбы
-            3,  // S / Сила
-            3,  // T / Стойкость
-            3,  // W / Жизни
-            5,  // I / Инициатива
-            4,  // A / Атаки
-            8,  // LD / Лидерство
-            5,  // AS / Защита бронёй
-            6,  // Ward / Особая защита
-            ""  // Param / Дополнительные параметры:
-            //  F - всегда бьёт первым
-            //  B - большое оружие, +2 к S, по инициативе бьёт последним
-            //  Rws, Rs, Rt, Ras, Rld, Rward - перебрасывать кубик при бросках на пареметр
-            //  Rall - перебрасывать любой кубик
-            );
-
-        static Fighter B = new Fighter(
-            "Отвратительный орк",
-            4, // M
-            3, // WS
-            3, // BS
-            4, // S
-            4, // T
-            3, // W
-            4, // I
-            4, // A
-            6, // LD
-            4, // AS
-            0, // Ward
-            "" // Param
-            );
 
         static void Main(string[] args)
         {
+            // теперь можно будет сделать армия на армию, вот так
+            //List<IUnit> army = new List<IUnit>();
+            //army.Add(new ОтвратительныйОрк());
+            //army.Add(new ОтвратительныйОрк());
+            // но для этого нужно будет пределать код
+
+
+            var A = new ПрекрасныйЭльф();
+            var B = new ОтвратительныйОрк();
+
+            // саму битву лучше перенести в отдельную функцию, а еще лучше в класс
             int round = 0;
 
             Console.SetWindowSize(140, 50);
             Print("\n\n\n" + A.Name + " vs " + B.Name + "\n", 0);
 
-            while ((A.W > 0) && (B.W > 0))
+            while ((A.LifePoints > 0) && (B.LifePoints > 0))
             {
                 round++;
                 int roundWoundA = 0;
                 int roundWoundB = 0;
 
                 Print("\n\nраунд: " + round + "\n", 3);
-                Print(A.Name + ": " + A.W + "W " + B.Name + ": " + B.W + "W\n", 0);
+                Print(A.Name + ": " + A.LifePoints + "W " + B.Name + ": " + B.LifePoints + "W\n", 0);
 
-                if (Check_i(round) != 0)
+                if (Check_i(round, A, B) != 0)
                 {
-                    for (int allA = 1; allA <= A.A; allA++)
+                    for (int allA = 1; allA <= A.AttackPoints; allA++)
                     {
-                        if (A.Attack(B) != 0)
+                        if (A.Action.Attack(B) != 0)
                         {
                             roundWoundB++;
-                            B.W--;
+                            B.LifePoints--;
                         }
                     }
-                    for (int allB = 1; allB <= B.A; allB++)
+                    for (int allB = 1; allB <= B.AttackPoints; allB++)
                     {
-                        if (B.Attack(A) != 0)
+                        if (B.Action.Attack(A) != 0)
                         {
                             roundWoundA++;
-                            A.W--;
+                            A.LifePoints--;
                         }
                     }
                 }
                 else
                 {
-                    for (int allB = 1; allB <= B.A; allB++)
+                    for (int allB = 1; allB <= B.AttackPoints; allB++)
                     {
-                        if (B.Attack(A) != 0)
+                        if (B.Action.Attack(A) != 0)
                         {
                             roundWoundA++;
-                            A.W--;
+                            A.LifePoints--;
                         }
                     }
-                    for (int allA = 1; allA <= A.A; allA++)
+                    for (int allA = 1; allA <= A.AttackPoints; allA++)
                     {
-                        if (A.Attack(B) != 0)
+                        if (A.Action.Attack(B) != 0)
                         {
                             roundWoundB++;
-                            B.W--;
+                            B.LifePoints--;
                         }
                     }
                 }
-                if ((A.W > 0) && (B.W > 0))
+                if ((A.LifePoints > 0) && (B.LifePoints > 0))
                 {
                     if (roundWoundA > roundWoundB)
                     {
-                        A.W = A.test_r(roundWoundA);
+                        A.LifePoints = A.Action.test_r(roundWoundA);
                     }
                     if (roundWoundB > roundWoundA)
                     {
-                        B.W = B.test_r(roundWoundB);
+                        B.LifePoints = B.Action.test_r(roundWoundB);
                     }
                 }
             }
             Print("\n\nКонец:", 3);
-            if (B.W < 1)
+            if (B.LifePoints < 1)
             {
                 Print(" " + A.Name + " победил\n\n", 0);
             }
-            if (A.W < 1)
+            if (A.LifePoints < 1)
             {
                 Print(" " + B.Name + " победил\n\n", 0);
             }
@@ -145,7 +123,7 @@ namespace WarhammerFantasy
             Console.Write(line);
         }
 
-        static int Check_i(int round)
+        static int Check_i(int round, IUnit A, IUnit B)
         {
             int r;
 
@@ -164,11 +142,11 @@ namespace WarhammerFantasy
                 r = 0;
                 Print(B.Name + " -> всегда бьёт первым\n", 0);
             }
-            else if (A.I > B.I)
+            else if (A.Initiative > B.Initiative)
             {
                 r = 1;
             }
-            else if (A.I < B.I)
+            else if (A.Initiative < B.Initiative)
             {
                 r = 0;
             }
@@ -216,6 +194,4 @@ namespace WarhammerFantasy
 
 
     } // class Program
-
-   
 }
