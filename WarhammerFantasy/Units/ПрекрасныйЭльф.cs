@@ -1,7 +1,9 @@
-﻿using WarhammerFantasy.UnitActions;
+﻿using System.Diagnostics;
+using WarhammerFantasy.UnitActions;
 
 namespace WarhammerFantasy.Units
 {
+    [DebuggerDisplay("Имя = {Name}, Жизнь = {LifePoints}")]
     public class ПрекрасныйЭльф : UnitBase
     {
         public ПрекрасныйЭльф()

@@ -1,9 +1,12 @@
-﻿using WarhammerFantasy.UnitActions;
+﻿using System.Diagnostics;
+using WarhammerFantasy.UnitActions;
 
 namespace WarhammerFantasy.Units
 {
+    [DebuggerDisplay("Имя = {Name}, Жизнь = {LifePoints}")]
     public class ОтвратительныйОрк : UnitBase
     {
+
         public ОтвратительныйОрк()
         {
             Name = "Отвратительный орк";
