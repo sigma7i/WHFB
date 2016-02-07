@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using WarhammerFantasy.Units;
 
 namespace WarhammerFantasy
@@ -17,9 +19,13 @@ namespace WarhammerFantasy
             //army.Add(new ОтвратительныйОрк());
             // но для этого нужно будет пределать код
 
+            IUnit A = new ПрекрасныйЭльф();
+            IUnit B = new ОтвратительныйОрк();
+            
 
-            var A = new ПрекрасныйЭльф();
-            var B = new ОтвратительныйОрк();
+
+           //  var test = Assembly.GetExecutingAssembly().GetExportedTypes().Where(i => i.BaseType == typeof(UnitBase));
+    
 
             // саму битву лучше перенести в отдельную функцию, а еще лучше в класс
             int round = 0;

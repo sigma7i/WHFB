@@ -9,7 +9,7 @@ namespace WarhammerFantasy.UnitActions
     public class ActionBase : IAction
     {
         private static readonly Random Rand = new Random();
-        protected static IUnit Unit;
+        protected IUnit Unit;
 
         public ActionBase(IUnit unit)
         {
@@ -40,7 +40,7 @@ namespace WarhammerFantasy.UnitActions
             return r;
         }
 
-        protected int Hit(IUnit enamy)
+        protected int Hit(IUnit enemy)
         {
             int r = 0;
 
@@ -51,17 +51,17 @@ namespace WarhammerFantasy.UnitActions
             }
             else
             {
-                if (Unit.WeaponSkill == enamy.WeaponSkill)
+                if (Unit.WeaponSkill == enemy.WeaponSkill)
                 {
                     if (check_k("ws", Unit.Param, 4, 1) != 0) { r = 1; }
                 }
-                if (Unit.WeaponSkill > enamy.WeaponSkill)
+                if (Unit.WeaponSkill > enemy.WeaponSkill)
                 {
                     if (check_k("ws", Unit.Param, 3, 1) != 0) { r = 1; }
                 }
-                if (Unit.WeaponSkill < enamy.WeaponSkill)
+                if (Unit.WeaponSkill < enemy.WeaponSkill)
                 {
-                    if ((Unit.WeaponSkill * 2) < enamy.WeaponSkill)
+                    if ((Unit.WeaponSkill * 2) < enemy.WeaponSkill)
                     {
                         if (check_k("ws", Unit.Param, 5, 1) != 0) { r = 1; }
                     }
